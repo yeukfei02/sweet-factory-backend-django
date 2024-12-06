@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     "django_extensions",
     "main.apps.MainConfig",
     "users.apps.UsersConfig",
-    "zones.apps.ZonesConfig"
+    "zones.apps.ZonesConfig",
+    "cities.apps.CitiesConfig"
 ]
 
 MIDDLEWARE = [
