@@ -13,3 +13,11 @@ class City(models.Model):
 
     class Meta:
         db_table = 'cities'
+        indexes = [
+            models.Index(fields=['city_name']),
+            models.Index(fields=['area']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['updated_at']),
+            models.Index(fields=['user_id']),
+            models.Index(fields=['zone_id']),
+        ]

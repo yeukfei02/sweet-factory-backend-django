@@ -13,3 +13,11 @@ class Machine(models.Model):
 
     class Meta:
         db_table = 'machines'
+        indexes = [
+            models.Index(fields=['machine_name']),
+            models.Index(fields=['serial_number']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['updated_at']),
+            models.Index(fields=['user_id']),
+            models.Index(fields=['city_id']),
+        ]

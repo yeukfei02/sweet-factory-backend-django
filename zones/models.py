@@ -10,3 +10,9 @@ class Zone(models.Model):
 
     class Meta:
         db_table = 'zones'
+        indexes = [
+            models.Index(fields=['zone_name']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['updated_at']),
+            models.Index(fields=['user_id']),
+        ]

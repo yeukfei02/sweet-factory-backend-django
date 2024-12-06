@@ -17,3 +17,14 @@ class Product(models.Model):
 
     class Meta:
         db_table = 'products'
+        indexes = [
+            models.Index(fields=['product_name']),
+            models.Index(fields=['product_description']),
+            models.Index(fields=['price']),
+            models.Index(fields=['quantity']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['updated_at']),
+            models.Index(fields=['user_id']),
+            models.Index(fields=['city_id']),
+            models.Index(fields=['machine_id']),
+        ]

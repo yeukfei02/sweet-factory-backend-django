@@ -9,3 +9,9 @@ class User(models.Model):
 
     class Meta:
         db_table = 'users'
+        indexes = [
+            models.Index(fields=['email']),
+            models.Index(fields=['password']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['updated_at']),
+        ]
