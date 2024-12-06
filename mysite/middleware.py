@@ -10,7 +10,7 @@ class AuthorizationMiddleware:
         try:
             print(f"request.path = {request.path}")
 
-            if request.path.startswith("/api/zones") or request.path.startswith("/api/cities"):
+            if request.path.startswith("/api/zones") or request.path.startswith("/api/cities") or request.path.startswith("/api/machines") or request.path.startswith("/api/products"):
                 authorization = request.headers.get("Authorization")
                 if authorization:
                     token = authorization[7:]
