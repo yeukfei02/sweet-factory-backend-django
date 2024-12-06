@@ -64,6 +64,9 @@ def create_zone(request):
 def get_zones(request):
     print(f"request = {request}")
 
+    user_id = request.GET.get('user_id')
+    print(f"user_id = {user_id}")
+
     response = {
         "message": "getZones",
         "zones": []
@@ -71,6 +74,9 @@ def get_zones(request):
 
     try:
         zones = Zone.objects.all()
+
+        if user_id:
+            zones = Zone.objects.all().filter(user_id=user_id)
 
         formatted_zones = []
 
@@ -92,11 +98,17 @@ def get_zones(request):
                 }
                 formatted_zones.append(formatted_zone)
 
-                response = {
-                    "message": "getZones",
-                    "getZones": formatted_zones
-                }
-                return JsonResponse(response, status=200)
+            response = {
+                "message": "getZones",
+                "getZones": formatted_zones
+            }
+            return JsonResponse(response, status=200)
+        else:
+            response = {
+                "message": "getZones",
+                "getZones": []
+            }
+            return JsonResponse(response, status=200)
     except Exception as e:
         response = {
             "message": "getZones",
