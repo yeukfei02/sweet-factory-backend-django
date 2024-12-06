@@ -3,7 +3,6 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
-from django.forms.models import model_to_dict
 import bcrypt
 import jwt
 from datetime import datetime, timedelta
@@ -148,13 +147,25 @@ def get_users(request):
     }
 
     try:
-        users = User.objects.all().values()
+        users = User.objects.all()
 
-        response = {
-            "message": "getUsers",
-            "users": list(users)
-        }
-        return JsonResponse(response, status=200)
+        formatted_users = []
+
+        if users:
+            for user in users:
+                formatted_user = {
+                    "id": user.id,
+                    "email": user.email,
+                    "created_at": user.created_at,
+                    "updated_at": user.updated_at
+                }
+                formatted_users.append(formatted_user)
+
+            response = {
+                "message": "getUsers",
+                "users": formatted_users
+            }
+            return JsonResponse(response, status=200)
     except Exception as e:
         response = {
             "message": "getUsers",
@@ -177,12 +188,19 @@ def get_user(request, id):
 
     try:
         user = User.objects.get(id=id)
+        if user:
+            formatted_user = {
+                "id": user.id,
+                "email": user.email,
+                "created_at": user.created_at,
+                "updated_at": user.updated_at
+            }
 
-        response = {
-            "message": "getUser",
-            "user": model_to_dict(user)
-        }
-        return JsonResponse(response, status=200)
+            response = {
+                "message": "getUser",
+                "user": formatted_user
+            }
+            return JsonResponse(response, status=200)
     except Exception as e:
         response = {
             "message": "getUser",
