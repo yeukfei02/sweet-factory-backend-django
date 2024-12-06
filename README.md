@@ -4,6 +4,10 @@ sweet-factory-backend-django
 
 documentation: <>
 
+api url: <http://localhost:8000>
+
+admin portal url: <http://localhost:8000/admin>
+
 ## Requirement
 
 - install python (v3.12)
