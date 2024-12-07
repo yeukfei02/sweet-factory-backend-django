@@ -2,7 +2,7 @@
 
 sweet-factory-backend-django
 
-documentation: <>
+documentation: <https://documenter.getpostman.com/view/3827865/2sAYBbepF4>
 
 api url: <http://localhost:8000>
 
